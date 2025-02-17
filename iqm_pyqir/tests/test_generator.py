@@ -159,9 +159,7 @@ def test_multiple_contexts() -> None:
     ):
         m1.add_external_function(
             "f",
-            FunctionType(
-                iqm_pyqir.result_type(m1.context), [iqm_pyqir.qubit_type(m2.context)]
-            ),
+            FunctionType(iqm_pyqir.result_type(m1.context), [iqm_pyqir.qubit_type(m2.context)]),
         )
 
 

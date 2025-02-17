@@ -4,14 +4,7 @@
 from typing import List, Optional
 
 import iqm_pyqir
-from iqm_pyqir import (
-    Module,
-    Function,
-    Context,
-    add_string_attribute,
-    Linkage,
-    FunctionType,
-)
+from iqm_pyqir import Module, Function, Context, add_string_attribute, Linkage, FunctionType
 
 
 def entry_point(
