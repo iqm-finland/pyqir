@@ -2,7 +2,6 @@
 # Licensed under the MIT License.
 
 Include utils.ps1
-
 Properties {
     $Root = Resolve-Path (Split-Path -Parent $PSScriptRoot)
     $Qirlib = Join-Path $Root qirlib
