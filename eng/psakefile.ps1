@@ -4,8 +4,7 @@
 Include utils.ps1
 
 Properties {
-    $PSScriptRoot = Resolve-Path $PSScriptRoot
-    $Root = Resolve-Path (Split-Path -Parent $PSScriptRoot)
+    $Root = Resolve-Path (Split-Path -Parent /home/runner/work/iqm-pyqir/)
     $Qirlib = Join-Path $Root qirlib
     $iqm_pyqir = Join-Path $Root iqm_pyqir
     $Examples = Join-Path $Root examples
@@ -300,3 +299,5 @@ task configure-sccache -postaction { Write-CacheStats } {
         Write-BuildLog "Started sccache server"
     }
 }
+
+
