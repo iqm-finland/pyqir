@@ -54,7 +54,9 @@ def test_multiple() -> None:
     external_function = _external(module)
     assert module.verify() is None
 
-    names = list(map(lambda f: f.name, filter(iqm_pyqir.is_entry_point, module.functions)))
+    names = list(
+        map(lambda f: f.name, filter(iqm_pyqir.is_entry_point, module.functions))
+    )
     assert len(names) == 2
     assert bell_function.name in names
     assert external_function.name in names
@@ -67,7 +69,9 @@ def test_duplicate_name() -> None:
     assert module.verify() is None
     assert bell1.name != bell2.name
 
-    names = list(map(lambda f: f.name, filter(iqm_pyqir.is_entry_point, module.functions)))
+    names = list(
+        map(lambda f: f.name, filter(iqm_pyqir.is_entry_point, module.functions))
+    )
     assert len(names) == 2
     assert bell1.name in names
     assert bell2.name in names

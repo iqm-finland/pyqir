@@ -91,23 +91,37 @@ def test_add_value_flag_raises_with_wrong_ownership() -> None:
 
 
 def test_module_qir_major_version() -> None:
-    assert iqm_pyqir.qir_major_version(iqm_pyqir.Module(iqm_pyqir.Context(), "")) is None
-    assert iqm_pyqir.qir_major_version(iqm_pyqir.qir_module(iqm_pyqir.Context(), "")) is 1
+    assert (
+        iqm_pyqir.qir_major_version(iqm_pyqir.Module(iqm_pyqir.Context(), "")) is None
+    )
+    assert (
+        iqm_pyqir.qir_major_version(iqm_pyqir.qir_module(iqm_pyqir.Context(), "")) is 1
+    )
     mod = iqm_pyqir.qir_module(iqm_pyqir.Context(), "", 42)
     assert iqm_pyqir.qir_major_version(mod) == 42
 
 
 def test_module_qir_minor_version() -> None:
-    assert iqm_pyqir.qir_minor_version(iqm_pyqir.Module(iqm_pyqir.Context(), "")) is None
-    assert iqm_pyqir.qir_minor_version(iqm_pyqir.qir_module(iqm_pyqir.Context(), "")) is 0
+    assert (
+        iqm_pyqir.qir_minor_version(iqm_pyqir.Module(iqm_pyqir.Context(), "")) is None
+    )
+    assert (
+        iqm_pyqir.qir_minor_version(iqm_pyqir.qir_module(iqm_pyqir.Context(), "")) is 0
+    )
     mod = iqm_pyqir.qir_module(iqm_pyqir.Context(), "", 1, 42)
     assert iqm_pyqir.qir_minor_version(mod) == 42
 
 
 def test_module_dynamic_qubit_management() -> None:
-    assert iqm_pyqir.dynamic_qubit_management(iqm_pyqir.Module(iqm_pyqir.Context(), "")) is None
     assert (
-        iqm_pyqir.dynamic_qubit_management(iqm_pyqir.qir_module(iqm_pyqir.Context(), "")) is False
+        iqm_pyqir.dynamic_qubit_management(iqm_pyqir.Module(iqm_pyqir.Context(), ""))
+        is None
+    )
+    assert (
+        iqm_pyqir.dynamic_qubit_management(
+            iqm_pyqir.qir_module(iqm_pyqir.Context(), "")
+        )
+        is False
     )
     mod = iqm_pyqir.qir_module(iqm_pyqir.Context(), "", dynamic_qubit_management=True)
     assert iqm_pyqir.dynamic_qubit_management(mod) == True
@@ -116,9 +130,15 @@ def test_module_dynamic_qubit_management() -> None:
 
 
 def test_module_dynamic_result_management() -> None:
-    assert iqm_pyqir.dynamic_result_management(iqm_pyqir.Module(iqm_pyqir.Context(), "")) is None
     assert (
-        iqm_pyqir.dynamic_result_management(iqm_pyqir.qir_module(iqm_pyqir.Context(), "")) is False
+        iqm_pyqir.dynamic_result_management(iqm_pyqir.Module(iqm_pyqir.Context(), ""))
+        is None
+    )
+    assert (
+        iqm_pyqir.dynamic_result_management(
+            iqm_pyqir.qir_module(iqm_pyqir.Context(), "")
+        )
+        is False
     )
     mod = iqm_pyqir.qir_module(iqm_pyqir.Context(), "", dynamic_result_management=True)
     assert iqm_pyqir.dynamic_result_management(mod) == True
