@@ -23,7 +23,7 @@ This repository contains:
 ## Feedback
 
 If you have feedback about the content in this repository, please let us know by
-filing a [new issue](https://github.com/iqm-finland/pyqir/issues/new)!
+filing a [new issue](https://github.com/iqm-finland/pyqir/issues/)!
 
 ## Contributing
 
