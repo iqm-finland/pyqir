@@ -299,5 +299,3 @@ task configure-sccache -postaction { Write-CacheStats } {
         Write-BuildLog "Started sccache server"
     }
 }
-
-
