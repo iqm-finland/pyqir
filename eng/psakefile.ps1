@@ -4,6 +4,7 @@
 Include utils.ps1
 
 Properties {
+    $PSScriptRoot = Resolve-Path $PSScriptRoot
     $Root = Resolve-Path (Split-Path -Parent $PSScriptRoot)
     $Qirlib = Join-Path $Root qirlib
     $iqm_pyqir = Join-Path $Root iqm_pyqir
