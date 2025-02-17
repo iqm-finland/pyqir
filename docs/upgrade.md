@@ -131,5 +131,5 @@ This is possible now using `iqm_pyqir.extract_byte_string(value)`.
 
 ### Examples
 
-To see examples of how the new parser API can be used, take a look at [test_parser.py](https://github.com/qir-alliance/iqm_pyqir/blob/53e4aebfdb456e9603fae28543a8391075021a9f/iqm_pyqir/tests/test_parser.py).
-You can also compare it with [test_parser_api.py](https://github.com/qir-alliance/iqm_pyqir/blob/v0.6.2/iqm_pyqir-parser/tests/test_parser_api.py) from iqm_pyqir 0.6 for a before-and-after view of the same test cases using both the old and new APIs.
+To see examples of how the new parser API can be used, take a look at [test_parser.py](https://github.com/qir-alliance/pyqir/blob/53e4aebfdb456e9603fae28543a8391075021a9f/pyqir/tests/test_parser.py).
+You can also compare it with [test_parser_api.py](https://github.com/qir-alliance/pyqir/blob/v0.6.2/pyqir-parser/tests/test_parser_api.py) from pyqir 0.6 for a before-and-after view of the same test cases using both the old and new APIs.
