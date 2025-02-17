@@ -131,7 +131,7 @@ For those directly consuming `qirlib`, refer to the
 [Environment variables](https://github.com/qir-alliance/pyqir/blob/main/qirlib/README.md#environment-variables)
 section of it's README as the following constraints do not apply.
 
-The Python PyQIR projects require LLVM to already be installed prior to build.
+The Python iqm_pyqir projects require LLVM to already be installed prior to build.
 The PowerShell scripts will look at the the `qirlib`
 [Environment variables](https://github.com/qir-alliance/pyqir/blob/main/qirlib/README.md#environment-variables)
 and locate, build, or install LLVM as specified by the environment. The
