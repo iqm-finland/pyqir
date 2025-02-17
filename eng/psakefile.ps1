@@ -4,7 +4,7 @@
 Include utils.ps1
 
 Properties {
-    $Root = Resolve-Path (Split-Path -Parent /home/runner/work/iqm-pyqir/)
+    $Root = Resolve-Path (Split-Path -Parent $PSScriptRoot)
     $Qirlib = Join-Path $Root qirlib
     $iqm_pyqir = Join-Path $Root iqm_pyqir
     $Examples = Join-Path $Root examples
