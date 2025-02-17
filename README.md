@@ -17,13 +17,13 @@ This repository contains:
 
 ## Documentation
 
-- [Getting Started](https://www.qir-alliance.org/iqm_pyqir/)
-- [Building from Source](https://www.qir-alliance.org/iqm_pyqir/building.html)
+- [Getting Started](https://github.com/iqm-finland/pyqir)
+- [Building from Source](https://www.qir-alliance.org/pyqir/building.html)
 
 ## Feedback
 
 If you have feedback about the content in this repository, please let us know by
-filing a [new issue](https://github.com/qir-alliance/iqm_pyqir/issues/new)!
+filing a [new issue](https://github.com/iqm-finland/pyqir/issues/new)!
 
 ## Contributing
 
