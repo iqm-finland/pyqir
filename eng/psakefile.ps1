@@ -56,7 +56,7 @@ task qirlib -depends init {
 
 task pyqir -depends init {
     $configSettings = @(Get-CliCargoArgs) -Join " "
-    Get-Wheels pyqir | Remove-Item
+    Get-Wheels iqm_pyqir | Remove-Item
 
     Invoke-LoggedCommand { & $Python -m pip --verbose wheel --config-settings=build-args="$configSettings" --wheel-dir $Wheels $Pyqir }
 
@@ -64,7 +64,7 @@ task pyqir -depends init {
         Invoke-LoggedCommand { & $Python -m pip install auditwheel patchelf }
     }
     if (Test-CommandExists auditwheel) {
-        $unauditedWheels = Get-Wheels pyqir
+        $unauditedWheels = Get-Wheels iqm_pyqir
         Invoke-LoggedCommand { auditwheel show $unauditedWheels }
         Invoke-LoggedCommand { auditwheel repair --wheel-dir $Wheels --plat $AuditWheelTag $unauditedWheels }
         $unauditedWheels | Remove-Item
@@ -72,7 +72,7 @@ task pyqir -depends init {
 }
 
 task test {
-    $packages = Get-Wheels pyqir | ForEach-Object { "$_[test]" }
+    $packages = Get-Wheels iqm_pyqir | ForEach-Object { "$_[test]" }
     Invoke-LoggedCommand { & $Python -m pip install --force-reinstall $packages }
     Invoke-LoggedCommand -workingDirectory $Pyqir { pytest }
 }
@@ -218,7 +218,7 @@ task run-examples-in-containers {
 task run-examples {
     exec -workingDirectory $Examples {
         & $Python -m pip install --requirement requirements.txt --use-pep517
-        & $Python -m pip install --force-reinstall (Get-Wheel pyqir)
+        & $Python -m pip install --force-reinstall (Get-Wheel iqm_pyqir)
 
         & $Python bell_pair.py | Tee-Object -Variable output
         $head = $output | Select-Object -First 1
