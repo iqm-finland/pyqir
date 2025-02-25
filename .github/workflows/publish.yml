@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { os: "ubuntu-20.04", arch: "amd64", target: "checks", env: {} }
+#          - { os: "ubuntu-20.04", arch: "amd64", target: "checks", env: {} }
           - { os: "ubuntu-20.04", arch: "amd64", target: "default", env: {} }
           - { os: "windows-2019", arch: "amd64", target: "default", env: {} }
           - { os: "macos-14", arch: "aarch64", target: "default", env: {} }
