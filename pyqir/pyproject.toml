@@ -1,5 +1,5 @@
 [project]
-name = "iqm-pyqir"
+name = "test-pyqir"
 version = "0.10.7"
 requires-python = ">= 3.8"
 classifiers = [
