@@ -75,8 +75,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: dist/
-      - name: Check artifact structure
+      - name: Flatten artifact structure
         run: |
+          ls -la -R
+          find dist -type f | xargs -I {} mv -v {} dist;
           ls -la -R
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
