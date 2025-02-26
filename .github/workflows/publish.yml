@@ -72,13 +72,13 @@ jobs:
       id-token: write
     steps:
       - name: Download distribution packages
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4\\\\\\\\
         with:
           path: dist/
       - name: Unzip artifacts
         run: |
           cd dist
-          unzip *
+          tar -xvf *
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
