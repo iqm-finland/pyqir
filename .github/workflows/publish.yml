@@ -78,6 +78,8 @@ jobs:
       - name: Unzip artifacts
         run: |
           cd dist/
+          ls -la
+          ls -la
           unzip macos-14-universal-artifacts
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
