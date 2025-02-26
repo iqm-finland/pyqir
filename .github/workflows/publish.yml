@@ -77,13 +77,9 @@ jobs:
           path: dist/
       - name: Flatten artifact structure
         run: |
-          ls -la -R
           find dist -type f | xargs -I {} mv -v {} dist;
-          ls -la -R
           cd dist
-          rm -R -- */
-          cd ..
-          ls -la -R
+          rm -R -- */  # Remove (by now) empty folders so "gh-action-pypi-publish" does not fail on them 
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
