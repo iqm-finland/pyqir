@@ -77,7 +77,7 @@ jobs:
           path: dist/
       - name: Unzip artifacts
         run: |
-          cd dist
+          cd dist/macos-14-aarch64-artifacts
           ls -la
           tar -xvf *
       - name: Publish distribution packages to PyPI
