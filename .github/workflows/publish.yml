@@ -89,3 +89,28 @@ jobs:
         with:
           repository-url: https://test.pypi.org/legacy/
           attestations: false
+
+  docs:
+    runs-on: "ubuntu-20.04"
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: manylinux-artifacts
+          path: target/wheels
+
+      - name: Build Docs
+        run: ./build.ps1 -t docs
+        shell: pwsh
+
+      - name: Publish Docs to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs/_build/html
+        if: ${{ github.event_name == 'push' }}
