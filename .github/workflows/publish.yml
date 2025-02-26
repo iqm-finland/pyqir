@@ -78,6 +78,7 @@ jobs:
       - name: Unzip artifacts
         run: |
           cd dist
+          ls -la
           tar -xvf *
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
