@@ -79,7 +79,7 @@ jobs:
         run: |
           cd dist/macos-14-aarch64-artifacts
           ls -la
-          tar -xvf *
+          unzip *
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
