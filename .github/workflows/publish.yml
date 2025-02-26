@@ -51,13 +51,13 @@ jobs:
       - name: Artifacts - manylinux
         uses: actions/upload-artifact@v4
         with:
-          # name: manylinux-artifacts
+          name: manylinux-artifacts
           path: target/wheels/*manylinux_2_*.whl
         if: ${{ matrix.config.os == 'ubuntu-20.04' }}
       - name: Artifacts
         uses: actions/upload-artifact@v4
         with:
-          # name: ${{ matrix.config.os }}-${{ matrix.config.arch }}-artifacts
+          name: ${{ matrix.config.os }}-${{ matrix.config.arch }}-artifacts
           path: target/wheels/*
         if: ${{ matrix.config.os != 'ubuntu-20.04' }}
 
@@ -75,6 +75,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: dist/
+      - name: Check artifact structure
+        run: |
+          ls -la -R
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
