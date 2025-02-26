@@ -77,7 +77,7 @@ jobs:
           path: dist/
       - name: Unzip artifacts
         run: |
-          cd dist
+          cd dist/macos-14-aarch64-artifacts
           tar -xvf *
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
