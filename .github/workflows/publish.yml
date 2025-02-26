@@ -105,7 +105,9 @@ jobs:
           path: target/wheels
 
       - name: Build Docs
-        run: ./build.ps1 -t docs
+        run: |
+          ./build.ps1 -t docs
+          echo "" > docs/_build/html/.nojekyll  # Allow underscores in URL path
         shell: pwsh
 
       - name: Publish Docs to GitHub Pages
