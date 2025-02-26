@@ -8,3 +8,5 @@ on:
 jobs:
   trigger_publishing:
     uses: ./.github/workflows/publish.yml
+
+#please work

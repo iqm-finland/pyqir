@@ -52,13 +52,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: manylinux-artifacts
-          path: /github/workspace/target/wheels/*manylinux_2_*.whl
+          path: target/wheels/*manylinux_2_*.whl
         if: ${{ matrix.config.os == 'ubuntu-20.04' }}
       - name: Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.config.os }}-${{ matrix.config.arch }}-artifacts
-          path: /github/workspace/target/wheels/*
+          path: target/wheels/*
         if: ${{ matrix.config.os != 'ubuntu-20.04' }}
 
   push_to_pypi:
@@ -66,15 +66,22 @@ jobs:
     needs:
     - build
     environment:
-      name: pypi
+      name: testpypi
       url: https://test.pypi.org/p/test-pyqir
     permissions:
       id-token: write
     steps:
       - name: Download distribution packages
         uses: actions/download-artifact@v4
+        with:
+          path: dist/
+      - name: Flatten artifact structure
+        run: |
+          find dist -type f | xargs -I {} mv -v {} dist;
+          cd dist
+          rm -R -- */
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: target/wheels/
+          repository-url: https://test.pypi.org/legacy/
           attestations: false
