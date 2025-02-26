@@ -80,6 +80,10 @@ jobs:
           ls -la -R
           find dist -type f | xargs -I {} mv -v {} dist;
           ls -la -R
+          cd dist
+          rm -R -- */
+          cd ..
+          ls -la -R
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
