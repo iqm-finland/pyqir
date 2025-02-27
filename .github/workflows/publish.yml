@@ -66,8 +66,8 @@ jobs:
     needs:
     - build
     environment:
-      name: testpypi
-      url: https://test.pypi.org/p/test-pyqir
+      name: pypi
+      url: https://pypi.org/p/iqm-pyqir
     permissions:
       id-token: write
     steps:
