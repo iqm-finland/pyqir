@@ -3,9 +3,12 @@ on:
   push:
     branches:
       - main
+      - release/*
   pull_request:
     branches:
       - main
+      - release/*
+      - feature/*
 
 env:
   CARGO_TERM_COLOR: always
