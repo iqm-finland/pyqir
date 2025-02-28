@@ -3,12 +3,9 @@ on:
   push:
     branches:
       - main
-      - release/*
   pull_request:
     branches:
       - main
-      - release/*
-      - feature/*
 
 env:
   CARGO_TERM_COLOR: always
@@ -22,44 +19,17 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {
-              os: "ubuntu-20.04",
-              arch: "amd64",
-              target: "checks",
-              env: {},
-            }
-          - {
-              os: "ubuntu-20.04",
-              arch: "amd64",
-              target: "default",
-              env: {},
-            }
-          - {
-              os: "windows-2019",
-              arch: "amd64",
-              target: "default",
-              env: {},
-            }
-          - {
-              os: "macos-14",
-              arch: "aarch64",
-              target: "default",
-              env: { },
-            }
-          - {
-              os: "macos-14",
-              arch: "universal",
-              target: "default",
-              env: {
-                ARCHFLAGS: "-arch arm64 -arch x86_64"
-              },
-            }
+#          - { os: "ubuntu-20.04", arch: "amd64", target: "checks", env: {} }
+          - { os: "ubuntu-20.04", arch: "amd64", target: "default", env: {} }
+          - { os: "windows-2019", arch: "amd64", target: "default", env: {} }
+          - { os: "macos-14", arch: "aarch64", target: "default", env: {} }
+          - { os: "macos-14", arch: "universal", target: "default", env: { ARCHFLAGS: "-arch arm64 -arch x86_64" } }
     steps:
       - uses: actions/checkout@v4
       - name: Setup rust toolchain
         uses: ./.github/actions/rust-toolchain
         with:
-          toolchain: 1.80.1
+          toolchain: 1.84
           components: rustfmt clippy
       - shell: pwsh
         run: |
@@ -110,7 +80,9 @@ jobs:
           path: target/wheels
 
       - name: Build Docs
-        run: ./build.ps1 -t docs
+        run: |
+          ./build.ps1 -t docs
+          echo "" > docs/_build/html/.nojekyll  # Allow underscores in URL path
         shell: pwsh
       # Always publish docs as an artifact, but only publish docs to GitHub Pages
       # when pushing to main.
@@ -119,10 +91,3 @@ jobs:
         with:
           name: docs
           path: docs/_build
-
-      - name: Publish Docs to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: docs/_build/html
-        if: ${{ github.event_name == 'push' }}
