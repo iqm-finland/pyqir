@@ -1,4 +1,4 @@
-# Development 
+# Development
 
 This repository is a repository forked by IQM from PyQIR. In order to make
 and publish any changes, note that the version number will not update
