@@ -52,13 +52,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: manylinux-artifacts
-          path: /github/workspace/target/wheels/*manylinux_2_*.whl
+          path: target/wheels/*manylinux_2_*.whl
         if: ${{ matrix.config.os == 'ubuntu-20.04' }}
       - name: Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.config.os }}-${{ matrix.config.arch }}-artifacts
-          path: /github/workspace/target/wheels/*
+          path: target/wheels/*
         if: ${{ matrix.config.os != 'ubuntu-20.04' }}
 
   push_to_pypi:
@@ -67,14 +67,48 @@ jobs:
     - build
     environment:
       name: pypi
-      url: https://test.pypi.org/p/test-pyqir
+      url: https://pypi.org/p/iqm-pyqir
     permissions:
       id-token: write
     steps:
       - name: Download distribution packages
         uses: actions/download-artifact@v4
+        with:
+          path: dist/
+      - name: Flatten artifact folder structure
+        run: |
+          find dist -type f | xargs -I {} mv -v {} dist;
+          cd dist
+          rm -R -- */  # Remove (by now) empty folders so "gh-action-pypi-publish" does not fail on them 
       - name: Publish distribution packages to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: target/wheels/
+          repository-url: https://pypi.org/legacy/
           attestations: false
+
+  docs:
+    runs-on: "ubuntu-20.04"
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: manylinux-artifacts
+          path: target/wheels
+
+      - name: Build Docs
+        run: |
+          ./build.ps1 -t docs
+          echo "" > docs/_build/html/.nojekyll  # Allow underscores in URL path
+        shell: pwsh
+
+      - name: Publish Docs to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs/_build/html
+        if: ${{ github.event_name == 'push' }}
