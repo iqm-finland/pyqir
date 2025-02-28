@@ -75,7 +75,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: dist/
-      - name: Flatten artifact structure
+      - name: Flatten artifact folder structure
         run: |
           find dist -type f | xargs -I {} mv -v {} dist;
           cd dist
