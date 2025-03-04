@@ -104,6 +104,8 @@ jobs:
         run: |
           ./build.ps1 -t docs
           echo "" > docs/_build/html/.nojekyll  # Allow underscores in URL path
+          # remove unnecessary build files
+          sudo rm -rf build/sphinx/html/.doctrees
         shell: pwsh
 
       - name: Publish Docs to GitHub Pages
