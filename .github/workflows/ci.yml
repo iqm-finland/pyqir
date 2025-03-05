@@ -78,10 +78,9 @@ jobs:
       - name: Build Docs
         run: |
           ./build.ps1 -t docs
-          # Allow underscores in URL path
-          touch docs/_build/html/.nojekyll
-          # Remove unnecessary build files
-          rm -rf docs/_build/doctrees
+          $PSVersionTable
+          dir
+          ls -la
         shell: pwsh
       # Always publish docs as an artifact, but only publish docs to GitHub Pages
       # when pushing to main.
