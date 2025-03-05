@@ -103,8 +103,10 @@ jobs:
       - name: Build Docs
         run: |
           ./build.ps1 -t docs
-          echo "" > docs/_build/html/.nojekyll  # Allow underscores in URL path
-          rmdir -rf docs/_build/doctrees  # Remove unnecessary build files
+          # Allow underscores in URL path
+          touch docs/_build/html/.nojekyll
+          # Remove unnecessary build files
+          rm -rf docs/_build/doctrees
         shell: pwsh
 
       - name: Publish Docs to GitHub Pages
