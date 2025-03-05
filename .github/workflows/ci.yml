@@ -78,10 +78,10 @@ jobs:
       - name: Build Docs
         run: |
           ./build.ps1 -t docs
-          $PSVersionTable
-          dir
-          ls -la
+          Remove-Item -Recurse -ErrorAction SilentlyContinue docs/_build/doctrees  # Remove unnecessary build files
+          New-Item docs/_build/html/.nojekyll -type file  # Allow underscores in URL path
         shell: pwsh
+
       # Always publish docs as an artifact, but only publish docs to GitHub Pages
       # when pushing to main.
       - name: Publish Docs as Artifacts
