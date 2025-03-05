@@ -79,6 +79,7 @@ jobs:
         run: |
           ./build.ps1 -t docs
           echo "" > docs/_build/html/.nojekyll  # Allow underscores in URL path
+          rmdir -Recurse -ErrorAction SilentlyContinue docs/_build/doctrees  # Remove unnecessary build files
         shell: pwsh
       # Always publish docs as an artifact, but only publish docs to GitHub Pages
       # when pushing to main.
